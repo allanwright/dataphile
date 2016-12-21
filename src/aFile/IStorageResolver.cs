@@ -15,7 +15,7 @@ namespace aFile
         /// <returns>The storage path for the specified object.</returns>
         string ResolvePath<T>(
             string basePath,
-            string id,
+            object id,
             string extension
             ) where T : class;
     }

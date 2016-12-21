@@ -18,7 +18,7 @@ namespace aFile
         /// <returns>The storage path for the specified object.</returns>
         public string ResolvePath<T>(
             string basePath,
-            string id,
+            object id,
             string extension) where T : class
         {
             if (extension.StartsWith("."))
@@ -31,6 +31,7 @@ namespace aFile
 
             Type type = typeof(T);
 
+            // TODO: Replace . in type name with _
             return Path.Combine(
                 basePath,
                 type.FullName,

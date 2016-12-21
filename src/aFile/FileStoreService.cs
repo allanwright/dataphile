@@ -29,7 +29,7 @@ namespace aFile
                 _options.StorageResolver = new DefaultStorageResolver();
         }
 
-        public void Delete<T>(string id) where T : class
+        public void Delete<T>(object id) where T : class
         {
             File.Delete(
                 _options.StorageResolver.ResolvePath<T>(
@@ -38,8 +38,9 @@ namespace aFile
                     _options.Extension));
         }
 
-        public void Insert<T>(T value, string id) where T : class
+        public void Insert<T>(T value, object id) where T : class
         {
+            // TODO: Create the directory if it doesn't exist
             File.WriteAllText(
                 _options.StorageResolver.ResolvePath<T>(
                     _options.BasePath,
@@ -48,7 +49,7 @@ namespace aFile
                 _options.Serializer.Serialize(value));
         }
 
-        public T ReadSingle<T>(string id) where T : class
+        public T ReadSingle<T>(object id) where T : class
         {
             return _options.Serializer.Deserialize<T>(
                 File.ReadAllText(_options.StorageResolver.ResolvePath<T>(
@@ -57,7 +58,7 @@ namespace aFile
                 _options.Extension)));
         }
 
-        public IEnumerable<T> RreadAll<T>() where T : class
+        public IEnumerable<T> ReadAll<T>() where T : class
         {
             var fileInfo = new FileInfo(_options.StorageResolver.ResolvePath<T>(_options.BasePath, "", _options.Extension));
             var directoryInfo = fileInfo.Directory;
@@ -75,7 +76,7 @@ namespace aFile
             return items.ToArray();
         }
 
-        public void Update<T>(T value, string id) where T : class
+        public void Update<T>(T value, object id) where T : class
         {
             Insert(value, id);
         }
