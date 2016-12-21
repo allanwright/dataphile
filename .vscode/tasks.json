@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "src"
+                "src/aFile", "src/aFile.Sample"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"

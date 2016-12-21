@@ -1,5 +1,10 @@
 {
-  "version": "1.0.0-*",
+  "title": "aFile",
+  "description": "File based persistence for prototyping and small projects that don't require a database.",
+  "authors": [
+    "Allan Wright"
+  ],
+  "version": "1.0.0",
   "buildOptions": {
     "debugType": "portable"
   },
