@@ -10,7 +10,7 @@ namespace aFile.Sample
         {
             // TODO: Stop hard coding the base path
             var services = new ServiceCollection()
-                .AddFileStore("D:\\Downloads\\");
+                .AddFileStore(options => options.BasePath("D:\\Downloads\\"));
             
             IServiceProvider serviceProvider =
                 services.BuildServiceProvider();
