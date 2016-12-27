@@ -3,8 +3,11 @@ using Newtonsoft.Json;
 namespace aFile
 {
     /// <summary>
-    /// Defines the default serializer used by FileStoreService.
+    /// Defines the default serializer.
     /// </summary>
+    /// <remarks>
+    /// The default serializer implements json serialization.
+    /// </remarks>
     public class DefaultSerializer : ISerializer
     {
         /// <summary>

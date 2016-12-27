@@ -21,20 +21,16 @@ namespace aFile
             object id,
             string extension) where T : class
         {
-            if (extension.StartsWith("."))
-                extension = extension.TrimStart(".".ToCharArray());
-
             string name = string.Format(
                 "{0}.{1}",
                 id,
                 extension);
 
             Type type = typeof(T);
-
-            // TODO: Replace . in type name with _
+            
             return Path.Combine(
                 basePath,
-                type.FullName,
+                type.FullName.Replace(".", "_"),
                 name);
         }
     }

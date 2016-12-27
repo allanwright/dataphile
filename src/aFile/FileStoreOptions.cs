@@ -6,17 +6,23 @@ namespace aFile
     public class FileStoreOptions
     {
         /// <summary>
-        /// Gets or sets the base path of the file store.
+        /// Gets or sets the base path for file storage.
         /// </summary>
-        /// <remarks>
-        /// An ArgumentException is thrown if BasePath is not an absolute path.
-        /// </remarks>
         public string BasePath { get; set; }
 
+        /// <summary>
+        /// Gets or sets the file extension used when creating files.
+        /// </summary>
         public string Extension { get; set; } = "json";
 
+        /// <summary>
+        /// Gets or sets the serializer.
+        /// </summary>
         public ISerializer Serializer { get; set; }
 
+        /// <summary>
+        /// Gets or sets the storage resolver.
+        /// </summary>
         public IStorageResolver StorageResolver { get; set; }
     }
 }

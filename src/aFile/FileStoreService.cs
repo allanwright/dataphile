@@ -22,6 +22,9 @@ namespace aFile
             if (string.IsNullOrEmpty(_options.Extension))
                 throw new ArgumentException("Extension cannot be null or empty");
             
+            if (_options.Extension.StartsWith("."))
+                _options.Extension = _options.Extension.TrimStart(".".ToCharArray());
+            
             if (_options.Serializer == null)
                 _options.Serializer = new DefaultSerializer();
             
