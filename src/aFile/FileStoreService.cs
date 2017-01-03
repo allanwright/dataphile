@@ -35,7 +35,7 @@ namespace aFile
         public void Delete<T>(object id) where T : class
         {
             File.Delete(
-                _options.StorageResolver.ResolvePath<T>(
+                _options.StorageResolver.ResolveObject<T>(
                     _options.BasePath,
                     id,
                     _options.Extension));
@@ -43,9 +43,15 @@ namespace aFile
 
         public void Insert<T>(T value, object id) where T : class
         {
-            // TODO: Create the directory if it doesn't exist
+            string directoryPath = _options.StorageResolver.ResolveType<T>(
+                _options.BasePath);            
+            var directoryInfo = new DirectoryInfo(directoryPath);
+
+            if (!directoryInfo.Exists)
+                directoryInfo.Create();
+            
             File.WriteAllText(
-                _options.StorageResolver.ResolvePath<T>(
+                _options.StorageResolver.ResolveObject<T>(
                     _options.BasePath,
                     id,
                     _options.Extension),
@@ -55,7 +61,7 @@ namespace aFile
         public T ReadSingle<T>(object id) where T : class
         {
             return _options.Serializer.Deserialize<T>(
-                File.ReadAllText(_options.StorageResolver.ResolvePath<T>(
+                File.ReadAllText(_options.StorageResolver.ResolveObject<T>(
                     _options.BasePath,
                     id,
                 _options.Extension)));
@@ -63,7 +69,7 @@ namespace aFile
 
         public IEnumerable<T> ReadAll<T>() where T : class
         {
-            var fileInfo = new FileInfo(_options.StorageResolver.ResolvePath<T>(_options.BasePath, "", _options.Extension));
+            var fileInfo = new FileInfo(_options.StorageResolver.ResolveObject<T>(_options.BasePath, "", _options.Extension));
             var directoryInfo = fileInfo.Directory;
 
             if (!directoryInfo.Exists)

@@ -13,10 +13,20 @@ namespace aFile
         /// <param name="id">The id of the object.</param>
         /// <param name="extension">The storage file extension.</param>
         /// <returns>The storage path for the specified object.</returns>
-        string ResolvePath<T>(
+        string ResolveObject<T>(
             string basePath,
             object id,
             string extension
+            ) where T : class;
+        
+        /// <summary>
+        /// Resolves a storage path for a specified type.
+        /// </summary>
+        /// <typeparam name="T">The type to resolve.</typeparam>
+        /// <param name="basePath">The base storage path.</typeparam>
+        /// <returns>The storage path for the specified type.</returns>
+        string ResolveType<T>(
+            string basePath
             ) where T : class;
     }
 }
