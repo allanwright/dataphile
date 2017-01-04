@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Dataphile.Sample
@@ -8,9 +9,12 @@ namespace Dataphile.Sample
     {
         public static void Main(string[] args)
         {
-            // TODO: Stop hard coding the base path
+            string basePath = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "Data");
+
             var services = new ServiceCollection()
-                .AddFileStore(options => options.BasePath("D:\\Downloads\\"));
+                .AddFileStore(options => options.BasePath(basePath));
             
             IServiceProvider serviceProvider =
                 services.BuildServiceProvider();
