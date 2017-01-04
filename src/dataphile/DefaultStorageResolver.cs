@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace aFile
+namespace Dataphile
 {
     /// <summary>
     /// Defines the default storage path resolver.

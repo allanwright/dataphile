@@ -1,14 +1,9 @@
-using Newtonsoft.Json;
-
-namespace aFile
+namespace Dataphile
 {
     /// <summary>
-    /// Defines the default serializer.
+    /// Defines the serializer interface used by FileStoreService.
     /// </summary>
-    /// <remarks>
-    /// The default serializer implements json serialization.
-    /// </remarks>
-    public class DefaultSerializer : ISerializer
+    public interface ISerializer
     {
         /// <summary>
         /// Deserializes the specified object.
@@ -16,19 +11,13 @@ namespace aFile
         /// <typeparam name="T">The deserialized type.</typeparam>
         /// <param name="value">The value to deserialize.</param>
         /// <returns>The deserialized object.</returns>
-        public T Deserialize<T>(string value) where T : class
-        {
-            return JsonConvert.DeserializeObject<T>(value);
-        }
+        T Deserialize<T>(string value) where T : class;
 
         /// <summary>
         /// Serializes the specified object.
         /// </summary>
         /// <param name="value">The value to serialize.</param>
         /// <returns>The serialized object.</returns>
-        public string Serialize<T>(T value) where T : class
-        {
-            return JsonConvert.SerializeObject(value);
-        }
+        string Serialize<T>(T value) where T : class;
     }
 }

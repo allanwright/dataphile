@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace aFile
+namespace Dataphile
 {
     /// <summary>
     /// Defines extension methods for adding the file store service as an application dependency.

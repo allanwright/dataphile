@@ -1,4 +1,4 @@
-namespace aFile
+namespace Dataphile
 {
     /// <summary>
     /// Defines the interface for resolving storage paths.

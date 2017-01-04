@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "src/aFile", "src/aFile.Sample"
+                "src/dataphile", "src/dataphile.sample"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"

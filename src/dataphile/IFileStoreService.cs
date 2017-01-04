@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace aFile
+namespace Dataphile
 {
     /// <summary>
     /// Defines the interface for the FileStore service.

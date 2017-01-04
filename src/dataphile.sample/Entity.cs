@@ -1,7 +1,7 @@
-namespace aFile.Sample
+namespace Dataphile.Sample
 {
     /// <summary>
-    /// Defines a generic entity used to demonstrate aFile functionality.
+    /// Defines a generic entity used to demonstrate dataphile functionality.
     /// </summary>
     public class Entity
     {

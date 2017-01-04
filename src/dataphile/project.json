@@ -1,6 +1,6 @@
 {
-  "title": "aFile",
-  "description": "File based persistence for prototyping and small projects that don't require a database.",
+  "title": "Dataphile",
+  "description": "File based storage for prototyping and small projects that don't require a database.",
   "authors": [
     "Allan Wright"
   ],

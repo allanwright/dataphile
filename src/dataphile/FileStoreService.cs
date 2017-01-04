@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace aFile
+namespace Dataphile
 {
     public class FileStoreService : IFileStoreService
     {

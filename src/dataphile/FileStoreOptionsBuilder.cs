@@ -1,4 +1,4 @@
-namespace aFile
+namespace Dataphile
 {
     /// <summary>
     /// Defines a file store options builder.

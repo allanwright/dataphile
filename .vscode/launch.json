@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}/src/aFile.Sample/bin/Debug/netcoreapp1.1/aFile.Sample.dll",
+            "program": "${workspaceRoot}/src/dataphile.sample/bin/Debug/netcoreapp1.1/dataphile.sample.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
             "externalConsole": false,
