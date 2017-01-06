@@ -1,6 +1,7 @@
 {
   "title": "Dataphile",
   "projectUrl": "https://github.com/allanwright/Dataphile",
+  "licenseUrl": "https://github.com/allanwright/Dataphile/blob/master/LICENSE.md",
   "description": "File based storage for prototyping and small projects that don't require a database.",
   "authors": [
     "Allan Wright"
