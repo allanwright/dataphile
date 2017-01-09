@@ -1,49 +1,89 @@
-# Dataphile
+![Dataphile Logo](logo.png)
 
 ## Introduction
-Dataphile is the "database" you need for all those times when you don't actually want or need a database.  Data is seralized and stored in files, making this super easy to setup and use in prototypes and small scale applications.
+Dataphile is a "database" for those times when you don't actually want or need a database!  The core concept is that data is stored in files, organised with a particular folder structure, making it really easy to setup and well suited for use in prototypes and lightweight projects where concurrent editing of data isn't a concern.
 
 ## Getting Started
-Dataphile is built for use dotnet core and works well with both console and web applications.  To install Dataphile, follow these instructions:
+Dataphile is extremely easy to setup and use.  It is built using dotnet core and works equally well in console and web applications.  The following guide assumes that you are using the dotnet core command line tools and that you are familiar with dependency injection built into asp.net core.  If you are not familiar with either of these concepts then please refer to the following documenation.  This guide also assumes that you are developing a web application.  Please note that if you are developing a dotnet core console application then you should refer to the sample project included with the source code.  The dependency injection referred to in the second link actually works in dotnet core console application and is configured and used in the sample project.
 
-1. Add it to the project.json file for your project:
+[Getting started with dotnet core using the command line](https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/using-with-xplat-cli)
+[Fundamentals of asp.net core dependency injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection)
+
+* Add the library to your project.json file then restore project dependencies with the dotnet restore command:
 
 ```json
 "dependencies": {
     "dataphile": "1.0.0"
   }
 ```
-2. Save the file then run the following command from the command prompt:
 
-```shell
-dotnet restore
-```
-
-3. If you are creating an asp.net application then add the following line of code to the ConfigureServices() method in Startup.cs.  In the case of a console application check out the sample application included with the source code for more details:
+* Add the following line of code to the ConfigureServices() method in Startup.cs:
 
 ```c#
 services.AddFileStore(Directory.GetCurrentDirectory());
 ```
 
-4.  Inject the FileStoreService into your controller/s using the IFileStoreService interface and use like so:
+* Inject the service into your controller/s and use the service to perform CRUD operations as indicated in the sample code below:
 
 ```c#
-var hoverboard = new Entity() { Id = 1, Name = "Hoverboard" };
+public class PizzaController : Controller
+{
+    private IFileStoreService _fileStoreService;
 
-// Create
-fileStoreService.Insert(hoverboard, hoverboard.Id);
+    public PizzaController(IFileStoreService fileStoreService)
+    {
+        _fileStoreService = fileStoreService;
+    }
 
-// Read Single
-fileStoreService.ReadSingle<Entity>(hoverboard.Id);
+    [HttpGet]
+    public IActionResult List()
+    {
+        var model = new ListViewModel() {
+            Pizzas = _fileStoreService.RreadAll<Pizza>()
+        };
 
-// Read All
-fileStoreService.ReadAll<Entity>();
+        return View(model);
+    }
 
-// Update
-fileStoreService.Update(hoverboard, hoverboard.Id);
+    [HttpGet]
+    public IActionResult Add()
+    {
+        return View("Add", new Pizza());
+    }
 
-// Delete
-fileStoreService.Delete<Entity>(entity.Id);
+    [HttpPost]
+    public IActionResult Add(Pizza model)
+    {
+        if (!ModelState.IsValid)
+            return View(model);
+        
+        _fileStoreService.Insert(model, model.Id);
+        return RedirectToAction("List");
+    }
+
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        return View(_fileStoreService.ReadSingle<Pizza>(id));
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Pizza model)
+    {
+        if (!ModelState.IsValid)
+            return View(model);
+        
+        _fileStoreService.Update(model, model.Id);
+        return RedirectToAction("List");
+    }
+
+    [HttpGet]
+    public IActionResult Delete(int id)
+    {
+        _fileStoreService.Delete<Pizza>(id);
+        return RedirectToAction("List");
+    }
+}
 ```
 
 ## Custom Storage Path Resolution
@@ -53,7 +93,9 @@ by default, Dataphile resolves storage paths in the following manner:
 [basePath]\[entity_type]\[entity_id].[extension]
 ```
 
-Should you require some other method of storage path resolution, you can create a custom storage resolver which implements the IStorageResolver interface as shown below:
+Should you require some other method of storage path resolution, you can create a custom storage resolver, as shown below.
+
+* Create a class which implements IStorageResolver:
 
 ```c#
 public class MyCustomStorageResolver : IStorageResolver
@@ -89,7 +131,7 @@ public class MyCustomStorageResolver : IStorageResolver
 }
 ```
 
-Register the custom storage resolver using the options builder:
+* Register the custom storage resolver using the options builder:
 
 ```c#
 services.AddFileStore(options =>
@@ -97,7 +139,9 @@ services.AddFileStore(options =>
 ```
 
 ## Custom Serialization
-In much the same fashion as above, the serializer used by Dataphile can be customised to your own liking by creating a class which implements the ISerializer interface:
+In much the same fashion as above, the serializer used by Dataphile can be customised to your own liking.
+
+* Create a class which implements the ISerializer interface:
 
 ```c#
 public class MyCustomSerializer : ISerializer
@@ -125,7 +169,7 @@ public class MyCustomSerializer : ISerializer
 }
 ```
 
-Register the custom serializer using the options builder:
+* Register the custom serializer using the options builder:
 
 ```c#
 services.AddFileStore(options =>
