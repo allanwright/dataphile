@@ -42,7 +42,7 @@ namespace Dataphile
         {
             return Path.Combine(
                 basePath,
-                typeof(T).FullName.Replace(".", "_"));
+                typeof(T).Name);
         }
     }
 }

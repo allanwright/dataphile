@@ -1,14 +1,19 @@
 {
   "title": "Dataphile",
-  "projectUrl": "https://github.com/allanwright/Dataphile",
-  "licenseUrl": "https://github.com/allanwright/Dataphile/blob/master/LICENSE.md",
   "description": "File based storage for prototyping and small projects that don't require a database.",
   "authors": [
     "Allan Wright"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "buildOptions": {
     "debugType": "portable"
+  },
+  "packOptions": {
+    "licenseUrl": "https://github.com/allanwright/Dataphile/blob/master/LICENSE.md",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/allanwright/Dataphile"
+    }
   },
   "dependencies": {
     "Microsoft.Extensions.DependencyInjection": "1.1.0",

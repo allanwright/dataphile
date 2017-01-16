@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "Microsoft.Extensions.DependencyInjection": "1.1.0",
-    "dataphile": "1.0.0"
+    "dataphile": "1.0.1"
   },
   "frameworks": {
     "netcoreapp1.1": {
