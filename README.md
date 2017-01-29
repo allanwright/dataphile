@@ -13,7 +13,7 @@ Dataphile is extremely easy to setup and use.  It is built using dotnet core and
 
 ```json
 "dependencies": {
-    "dataphile": "1.0.0"
+    "dataphile": "1.0.1"
   }
 ```
 
