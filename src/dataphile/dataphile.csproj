@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>File based storage for prototyping and small projects that don't require a database.</Description>
+    <AssemblyTitle>Dataphile</AssemblyTitle>
+    <VersionPrefix>1.0.1</VersionPrefix>
+    <Authors>Allan Wright</Authors>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <DebugType>portable</DebugType>
+    <AssemblyName>dataphile</AssemblyName>
+    <PackageId>dataphile</PackageId>
+    <PackageLicenseUrl>https://github.com/allanwright/Dataphile/blob/master/LICENSE.md</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/allanwright/Dataphile</RepositoryUrl>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+</Project>
